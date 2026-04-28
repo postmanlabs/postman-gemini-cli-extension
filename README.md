@@ -35,10 +35,10 @@ To switch modes, update the `args` in your Gemini CLI extension settings.
 
 ## EU Region
 
-If your Postman account is in the EU region, set the following environment variable before installing:
+If your Postman account is in the EU region, add the `--region eu` flag to the args in your Gemini CLI extension settings:
 
-```bash
-export POSTMAN_API_BASE_URL=https://api.eu.postman.com
+```json
+"args": ["-y", "@postman/postman-mcp-server@latest", "--minimal", "--region", "eu"]
 ```
 
 ## Use Cases

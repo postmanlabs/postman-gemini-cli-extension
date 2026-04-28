@@ -14,6 +14,34 @@ Install the Postman extension by running the following command in your terminal:
 gemini extensions install https://github.com/postmanlabs/postman-gemini-cli-extension
 ```
 
+## Authentication
+
+This extension uses your **Postman API key** to authenticate with the MCP server.
+
+When you run the extension for the first time, Gemini CLI will **prompt you to enter your API key**. You don't need to set any environment variables manually.
+
+Get your API key at [postman.postman.co/settings/me/api-keys](https://postman.postman.co/settings/me/api-keys).
+
+### Manual configuration (alternative)
+
+If you prefer to configure it directly in Gemini CLI's `settings.json`, use the `env` field — **not** a CLI argument:
+
+```json
+{
+  "mcpServers": {
+    "postman": {
+      "command": "npx",
+      "args": ["-y", "@postman/postman-mcp-server@latest", "--minimal"],
+      "env": {
+        "POSTMAN_API_KEY": "PMAK-your-key-here"
+      }
+    }
+  }
+}
+```
+
+> **Note**: `--apiKey` is not a supported CLI argument. The key must be passed via the `POSTMAN_API_KEY` environment variable.
+
 ## Features
 
 * **AI-powered Postman integration** — Leverages Model Context Protocol (MCP) to provide intelligent and context-aware Postman operations through natural language.

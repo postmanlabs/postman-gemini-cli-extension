@@ -16,10 +16,30 @@ gemini extensions install https://github.com/postmanlabs/postman-gemini-cli-exte
 
 ## Features
 
-* **AI-powered Postman integration** — Leverages Model Context Protocol (MCP) to provide intelligent and  context-aware Postman operations through natural language.
-* **Comprehensive API management** — Access to 100+ Postman API tools for advanced collaboration and enterprise features.
+* **AI-powered Postman integration** — Leverages Model Context Protocol (MCP) to provide intelligent and context-aware Postman operations through natural language.
+* **Essential API management** — Access to Postman's core tools for collections, workspaces, environments, specs, and more.
 * **Seamless workflow integration** — Integrates directly into your development environment, making API management an accessible part of your workflow.
 * **Enterprise-ready** — Designed with extensible architecture supporting Postman's Enterprise features and advanced collaboration workflows.
+
+## Tool Configuration
+
+This extension uses the **minimal** toolset by default — the recommended configuration for most users, providing fast, focused access to core Postman operations.
+
+| Mode | Tools | Use when |
+|------|-------|----------|
+| `--minimal` (default) | Essential tools | Collections, workspaces, environments, specs |
+| `--full` | 100+ tools | Advanced collaboration, Enterprise features |
+| `--code` | Code tools | API search and client code generation |
+
+To switch modes, update the `args` in your Gemini CLI extension settings.
+
+## EU Region
+
+If your Postman account is in the EU region, set the following environment variable before installing:
+
+```bash
+export POSTMAN_API_BASE_URL=https://api.eu.postman.com
+```
 
 ## Use Cases
 

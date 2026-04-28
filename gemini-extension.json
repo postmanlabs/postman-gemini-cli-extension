@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "mcpServers": {
     "postman": {
-            "type": "stdio",
             "command": "npx",
             "args": [
                 "-y",

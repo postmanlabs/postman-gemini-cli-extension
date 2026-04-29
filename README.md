@@ -20,7 +20,13 @@ This extension connects to Postman's hosted MCP server and authenticates via **O
 
 ### API key (alternative)
 
-If you prefer API key authentication, configure the server manually in Gemini CLI's `settings.json`:
+If you prefer API key authentication, set your key as an environment variable:
+
+```bash
+export POSTMAN_API_KEY=your-api-key-here
+```
+
+Then configure the server in Gemini CLI's `settings.json` to read it from the environment:
 
 ```json
 {
@@ -28,14 +34,14 @@ If you prefer API key authentication, configure the server manually in Gemini CL
     "postman": {
       "url": "https://mcp.postman.com/minimal",
       "headers": {
-        "Authorization": "Bearer YOUR_API_KEY"
+        "Authorization": "Bearer $POSTMAN_API_KEY"
       }
     }
   }
 }
 ```
 
-Get your API key at [postman.postman.co/settings/me/api-keys](https://postman.postman.co/settings/me/api-keys).
+Add the `export` line to your `~/.zshrc` or `~/.bashrc` to persist it across sessions. Get your API key at [postman.postman.co/settings/me/api-keys](https://postman.postman.co/settings/me/api-keys).
 
 ## Features
 
@@ -60,13 +66,21 @@ To use a different mode, update the URL in your Gemini CLI extension settings:
 
 If your Postman account is in the EU region, use the EU endpoint in your Gemini CLI extension settings:
 
+Set your key as an environment variable first:
+
+```bash
+export POSTMAN_API_KEY=your-api-key-here
+```
+
+Then configure the EU endpoint in Gemini CLI's `settings.json`:
+
 ```json
 {
   "mcpServers": {
     "postman": {
       "url": "https://mcp.eu.postman.com/minimal",
       "headers": {
-        "Authorization": "Bearer YOUR_API_KEY"
+        "Authorization": "Bearer $POSTMAN_API_KEY"
       }
     }
   }

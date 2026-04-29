@@ -1,24 +1,9 @@
 {
   "name": "postman",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "mcpServers": {
     "postman": {
-            "command": "npx",
-            "args": [
-                "-y",
-                "@postman/postman-mcp-server@latest",
-                "--minimal"
-            ],
-            "env": {
-                "POSTMAN_API_KEY": "${input:postman-api-key}"
-            }
-        }
-    },
-    "inputs": [
-        {
-            "id": "postman-api-key",
-            "type": "promptString",
-            "description": "Enter your Postman API key"
-        }
-    ]
+      "url": "https://mcp.postman.com/minimal"
+    }
+  }
 }

@@ -16,31 +16,26 @@ gemini extensions install https://github.com/postmanlabs/postman-gemini-cli-exte
 
 ## Authentication
 
-This extension uses your **Postman API key** to authenticate with the MCP server.
+This extension connects to Postman's hosted MCP server and authenticates via **OAuth** — no API key required. Gemini CLI will open a browser window to complete the Postman login flow on first use.
 
-When you run the extension for the first time, Gemini CLI will **prompt you to enter your API key**. You don't need to set any environment variables manually.
+### API key (alternative)
 
-Get your API key at [postman.postman.co/settings/me/api-keys](https://postman.postman.co/settings/me/api-keys).
-
-### Manual configuration (alternative)
-
-If you prefer to configure it directly in Gemini CLI's `settings.json`, use the `env` field — **not** a CLI argument:
+If you prefer API key authentication, configure the server manually in Gemini CLI's `settings.json`:
 
 ```json
 {
   "mcpServers": {
     "postman": {
-      "command": "npx",
-      "args": ["-y", "@postman/postman-mcp-server@latest", "--minimal"],
-      "env": {
-        "POSTMAN_API_KEY": "PMAK-your-key-here"
+      "url": "https://mcp.postman.com/minimal",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
       }
     }
   }
 }
 ```
 
-> **Note**: `--apiKey` is not a supported CLI argument. The key must be passed via the `POSTMAN_API_KEY` environment variable.
+Get your API key at [postman.postman.co/settings/me/api-keys](https://postman.postman.co/settings/me/api-keys).
 
 ## Features
 
@@ -51,23 +46,34 @@ If you prefer to configure it directly in Gemini CLI's `settings.json`, use the 
 
 ## Tool Configuration
 
-This extension uses the **minimal** toolset by default — the recommended configuration for most users, providing fast, focused access to core Postman operations.
+This extension uses the **minimal** toolset — fast, focused access to core Postman operations.
 
-| Mode | Tools | Use when |
-|------|-------|----------|
-| `--minimal` (default) | Essential tools | Collections, workspaces, environments, specs |
-| `--full` | 100+ tools | Advanced collaboration, Enterprise features |
-| `--code` | Code tools | API search and client code generation |
+To use a different mode, update the URL in your Gemini CLI extension settings:
 
-To switch modes, update the `args` in your Gemini CLI extension settings.
+| Mode | URL | Use when |
+|------|-----|----------|
+| Minimal (default) | `https://mcp.postman.com/minimal` | Collections, workspaces, environments, specs |
+| Full | `https://mcp.postman.com/mcp` | 100+ tools, advanced collaboration, Enterprise |
+| Code | `https://mcp.postman.com/code` | API search and client code generation |
 
 ## EU Region
 
-If your Postman account is in the EU region, add the `--region eu` flag to the args in your Gemini CLI extension settings:
+If your Postman account is in the EU region, use the EU endpoint in your Gemini CLI extension settings:
 
 ```json
-"args": ["-y", "@postman/postman-mcp-server@latest", "--minimal", "--region", "eu"]
+{
+  "mcpServers": {
+    "postman": {
+      "url": "https://mcp.eu.postman.com/minimal",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
+      }
+    }
+  }
+}
 ```
+
+> **Note**: OAuth is not supported for the EU region — API key authentication is required.
 
 ## Use Cases
 

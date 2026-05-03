@@ -1,9 +1,11 @@
 {
   "name": "postman",
   "version": "0.2.0",
+  "description": "Connect Gemini CLI to Postman — manage collections, workspaces, environments, and run API tests through natural language.",
   "mcpServers": {
     "postman": {
       "url": "https://mcp.postman.com/minimal"
     }
-  }
+  },
+  "contextFileName": "GEMINI.md"
 }

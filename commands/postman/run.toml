@@ -1,0 +1,18 @@
+description = "Run the project's Postman collection and show test results by endpoint."
+
+prompt = """
+Run the Postman collection for this project.
+
+Current .postman.json:
+!{cat .postman.json 2>/dev/null || echo "No .postman.json found — run /postman:setup first."}
+
+Follow the Test/Run workflow:
+1. Read the collectionId and environmentId from .postman.json above
+2. Verify the collection and environment still exist (getCollection, getEnvironment)
+3. Confirm the API server is running before proceeding
+4. Call runCollection with both collectionId and environmentId
+5. Display a summary:
+   - Overall: X tests — Y passed ✅, Z failed ❌ (success rate %)
+   - Breakdown by endpoint with pass/fail count
+6. For any failures, show the error and offer to investigate and fix
+"""

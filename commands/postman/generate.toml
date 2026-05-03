@@ -1,0 +1,20 @@
+description = "Generate a Postman collection from an OpenAPI spec file. Usage: /postman:generate <path-to-spec>"
+
+prompt = """
+Generate a Postman collection from the OpenAPI specification at: {{args}}
+
+Spec file contents:
+!{cat {{args}}}
+
+Current .postman.json (if any):
+!{cat .postman.json 2>/dev/null || echo "No .postman.json found."}
+
+Steps:
+1. Check for an existing workspace in .postman.json or search getWorkspaces; ask the user to confirm or create a new one
+2. Create the spec in Postman with createSpec — use the file content above, type OPENAPI:3.0
+3. Generate the collection with generateCollection (specId, elementType: "collection")
+4. Enhance the generated collection: add test scripts for status codes, response schema, and response time to every request
+5. Create an environment from the spec's servers[0].url as API_URL, plus any security scheme variables
+6. Save all IDs to .postman.json
+7. Run the collection once with runCollection to confirm it works
+"""

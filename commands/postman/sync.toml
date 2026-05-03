@@ -1,0 +1,19 @@
+description = "Update the Postman collection to reflect the current API code, then re-run tests."
+
+prompt = """
+Sync the Postman collection for this project with the current API codebase.
+
+Current .postman.json:
+!{cat .postman.json 2>/dev/null || echo "No .postman.json found — run /postman:setup first."}
+
+Steps:
+1. Read .postman.json to get the collectionId and workspaceId
+2. Read the current API source code to identify all endpoints, methods, and parameters
+3. Fetch the existing collection with getCollection
+4. Diff the current collection against the API — identify new endpoints, changed parameters, removed endpoints
+5. Update the collection with putCollection, validating against Collection schema v2.1.0
+6. Preserve existing test scripts where the endpoint is unchanged; update assertions where the response schema changed; add tests for new endpoints
+7. If an OpenAPI spec exists, also call syncCollectionWithSpec
+8. Re-run the collection to confirm all tests pass (runCollection)
+9. Update .postman.json with any changed metadata
+"""

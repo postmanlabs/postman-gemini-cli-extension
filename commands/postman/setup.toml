@@ -1,0 +1,35 @@
+description = "Initialize Postman workspace, collection, and environment for this project."
+
+prompt = """
+Set up Postman for this project from scratch.
+
+Current .postman.json (if any):
+!{cat .postman.json 2>/dev/null || echo "No .postman.json found."}
+
+Follow the Create Workspace and Collection workflow:
+
+STEP 0 — Check for existing resources:
+- If .postman.json exists and has valid IDs, verify them with getWorkspace and getCollection
+- Search getWorkspaces for workspaces matching this project name
+- Search getCollections in any found workspace for matching collections
+- Present findings and ask the user to confirm before creating anything new
+
+STEP 1 — Analyze the API:
+- Read the API source code or OpenAPI spec in this project
+- Identify all endpoints, HTTP methods, parameters, and auth requirements
+
+STEP 2 — Create or select workspace:
+- Use an existing workspace if the user confirmed one, otherwise createWorkspace
+
+STEP 3 — Create collection (validate against schema v2.1.0 before calling createCollection):
+- Add all identified endpoints as requests
+- Include test scripts on every request: status code, response schema, performance
+
+STEP 4 — Create environment:
+- createEnvironment with at minimum API_URL and any auth variables
+- Use type "secret" for sensitive values
+
+STEP 5 — Save everything to .postman.json in the project root
+
+STEP 6 — Run the collection once to establish a baseline (runCollection)
+"""
